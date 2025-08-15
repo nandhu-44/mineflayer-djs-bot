@@ -14,7 +14,14 @@ Control a Mineflayer Minecraft bot completely from Discord slash commands.
 
 ## Quick Start
 
-1. Copy `.env.example` to `.env` and fill the required values:
+1. Clone the repo:
+
+    ```sh
+    git clone https://github.com/nandhu-44/mineflayer-djs-bot.git
+    cd mineflayer-djs-bot
+    ```
+
+2. Copy `.env.example` to `.env` and fill the required values:
 
     ```sh
     cp .env.example .env
@@ -23,20 +30,20 @@ Control a Mineflayer Minecraft bot completely from Discord slash commands.
     - Discord: `DISCORD_TOKEN`, `DISCORD_CLIENT_ID`, `DISCORD_GUILD_ID`, `DISCORD_CONTROL_CHANNEL_ID`
     - Minecraft: `MC_HOST`, `MC_PORT`, `MC_USERNAME`, (optional) `MC_PASSWORD`, `MC_AUTH` (`offline` or `microsoft`)
 
-2. (Optional) Put overrides in `src/config/config.json` instead / in addition.
-3. Install deps:
+3. (Optional) Put overrides in `src/config/config.json` instead / in addition.
+4. Install deps:
 
     ```bash
     npm install
     ```
 
-4. Register slash commands (re-run after adding/removing commands):
+5. Register slash commands (re-run after adding/removing commands):
 
     ```bash
     npm run register
     ```
 
-5. Start:
+6. Start:
 
     ```bash
     npm start
