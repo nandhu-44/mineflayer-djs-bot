@@ -1,0 +1,19 @@
+{
+  "discord": {
+    "token": "DISCORD_TOKEN",
+    "clientId": "DISCORD_CLIENT_ID",
+    "guildId": "DISCORD_GUILD_ID",
+    "controlChannelId": "DISCORD_CONTROL_CHANNEL_ID"
+  },
+  "minecraft": {
+    "host": "MC_HOST",
+    "port": "MC_PORT",
+    "username": "MC_USERNAME",
+    "password": "MC_PASSWORD",
+    "auth": "mojang|microsoft|offline",
+    "loginCommandDelayMs": "MC_LOGIN_COMMAND_DELAY_MS"
+  },
+  "intervals": {
+    "statusUpdate": "STATUS_UPDATE_INTERVAL_MS"
+  }
+}
