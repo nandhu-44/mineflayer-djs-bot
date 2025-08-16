@@ -7,6 +7,13 @@ const cooldowns = new Collection();
 export default {
   name: Events.InteractionCreate,
   async execute(interaction, context) {
+    const ownerId = context.config?.discord?.ownerId;
+    if (ownerId && interaction.user?.id !== ownerId) {
+      if (interaction.isChatInputCommand()) {
+        return interaction.reply({ content: 'Not authorized.', ephemeral: true }).catch(()=>{});
+      }
+      return;
+    }
     if (interaction.isButton()) {
       const bot = getBot();
       const id = interaction.customId;
@@ -48,6 +55,9 @@ export default {
     if (!interaction.isChatInputCommand()) return;
     const command = context.commands.get(interaction.commandName);
     if (!command) return;
+    if (command.ownerOnly && interaction.user.id !== context.config.discord.ownerId) {
+      return interaction.reply({ content: 'Owner only command.', ephemeral: true });
+    }
 
     if (command.defer) await interaction.deferReply({ ephemeral: true });
 

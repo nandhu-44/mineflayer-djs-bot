@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import dotenv from 'dotenv';
+import dotenv from '@dotenvx/dotenvx';
 import { logger } from './logger.js';
 
 dotenv.config();
@@ -22,7 +22,8 @@ export const config = {
     token: process.env.DISCORD_TOKEN || fileConfig.discord?.token,
     clientId: process.env.DISCORD_CLIENT_ID || fileConfig.discord?.clientId,
     guildId: process.env.DISCORD_GUILD_ID || fileConfig.discord?.guildId,
-    controlChannelId: process.env.DISCORD_CONTROL_CHANNEL_ID || fileConfig.discord?.controlChannelId
+  controlChannelId: process.env.DISCORD_CONTROL_CHANNEL_ID || fileConfig.discord?.controlChannelId,
+  ownerId: process.env.DISCORD_OWNER_ID || fileConfig.discord?.ownerId
   },
   minecraft: {
     host: process.env.MC_HOST || fileConfig.minecraft?.host || 'localhost',
