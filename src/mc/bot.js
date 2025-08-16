@@ -17,25 +17,31 @@ export function createMinecraftBot(discordContext) {
     port: config.minecraft.port,
     username: config.minecraft.username,
     password: config.minecraft.password || undefined,
-  auth: config.minecraft.auth,
-  version: config.minecraft.version,
+    auth: config.minecraft.auth,
+    version: config.minecraft.version,
   });
 
   const safeLoad = (candidate, label) => {
-    const fn = (candidate && typeof candidate === 'function') ? candidate
-      : (candidate?.plugin && typeof candidate.plugin === 'function') ? candidate.plugin
+    const fn = (candidate && typeof candidate === "function")
+      ? candidate
+      : (candidate?.plugin && typeof candidate.plugin === "function")
+      ? candidate.plugin
       : null;
     if (fn) {
-      try { mcBot.loadPlugin(fn); } catch (e) { logger.warn(`Failed loading plugin ${label}:`, e.message); }
+      try {
+        mcBot.loadPlugin(fn);
+      } catch (e) {
+        logger.warn(`Failed loading plugin ${label}:`, e.message);
+      }
     } else {
       logger.warn(`Plugin ${label} not a function; skipped.`);
     }
   };
 
-  safeLoad(pathfinder, 'pathfinder');
-  safeLoad(collectBlockNS, 'collectblock');
-  safeLoad(toolNS, 'tool');
-  safeLoad(pvpNS, 'pvp');
+  safeLoad(pathfinder, "pathfinder");
+  safeLoad(collectBlockNS, "collectblock");
+  safeLoad(toolNS, "tool");
+  safeLoad(pvpNS, "pvp");
 
   mcBot.once("login", () => {
     logger.success(`Minecraft bot logged in as ${mcBot.username}`);
@@ -45,7 +51,7 @@ export function createMinecraftBot(discordContext) {
       logger.warn(
         "Failed to load minecraft-data for version",
         mcBot.version,
-        e.message
+        e.message,
       );
     }
     setTimeout(() => {
@@ -95,7 +101,10 @@ export function createMinecraftBot(discordContext) {
   if (config.features?.suppressProtocolSpam) {
     const warn = console.warn;
     console.warn = (...args) => {
-      if (typeof args[0] === 'string' && /Chunk size is .* only .* was read/.test(args[0])) return; // drop
+      if (
+        typeof args[0] === "string" &&
+        /Chunk size is .* only .* was read/.test(args[0])
+      ) return; // drop
       warn(...args);
     };
   }
@@ -107,9 +116,10 @@ export function createMinecraftBot(discordContext) {
         const food = mcBot.inventory
           ?.items()
           ?.find((i) =>
-            /bread|apple|carrot|potato|beef|pork|chicken|mutton|fish|stew/i.test(
-              i.name
-            )
+            /bread|apple|carrot|potato|beef|pork|chicken|mutton|fish|stew/i
+              .test(
+                i.name,
+              )
           );
         if (food) {
           mcBot
